@@ -9,17 +9,27 @@
 
 INPUT ip;
 
-void SKPInit() {
-    ip.type = INPUT_KEYBOARD;
+void SUIInit(int mode) {
+    if(mode == 0) {
+        ip.type = INPUT_KEYBOARD;
+    } else if(mode == 1) {
+        ip.type = INPUT_MOUSE;
+    } else {
+        return;
+    }
     ip.ki.wScan = 0;
     ip.ki.time = 0;
     ip.ki.dwExtraInfo = 0;
 }
 
-void SKPPressKey(int keycode) {
+void SUIPressKey(int keycode) {
+    if(ip.type == INPUT_MOUSE) {
+        return;
+    }
     ip.ki.wVk = keycode;
     ip.ki.dwFlags = 0;
     SendInput(1, &ip, sizeof(INPUT));
+    
     ip.ki.dwFlags = KEYEVENTF_KEYUP;
     SendInput(1, &ip, sizeof(INPUT));
 }
