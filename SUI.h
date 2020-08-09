@@ -4,32 +4,59 @@
 #pragma once
 
 #ifndef _WINDOWS_
-    #include <windows.h>
+    #include <Windows.h>
 #endif
 
-INPUT ip;
+INPUT _input;
 
 void SUIInit(int mode) {
-    if(mode == 0) {
-        ip.type = INPUT_KEYBOARD;
-    } else if(mode == 1) {
-        ip.type = INPUT_MOUSE;
-    } else {
+    if(mode>1) {
         return;
     }
-    ip.ki.wScan = 0;
-    ip.ki.time = 0;
-    ip.ki.dwExtraInfo = 0;
+    _input.type = mode;
+    if(mode == 0) {
+        _input.mi.time = 0;
+        _input.mi.mouseData = 0;
+        _input.mi.dwExtraInfo = 0;
+    }
+
+    if(mode == 1) {
+        _input.ki.wScan = 0;
+        _input.ki.time = 0;
+        _input.ki.dwExtraInfo = 0;
+    }
+}
+
+void SUIMoveCursor(int x, int y) {
+    _input.mi.dx = x;
+	_input.mi.dy = y;
+    _input.mi.dwFlags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
+		SendInput(1, &_input, sizeof(INPUT));
+}
+
+void SUIClickMouse(int button) {
+    if(button == 1) {
+           _input.mi.dwFlags = 2;
+	    SendInput(1, &_input, sizeof(INPUT));
+	    _input.mi.dwFlags = 4;
+	    SendInput(1, &_input, sizeof(INPUT));
+    } else
+    if(button == 2) {
+        _input.mi.dwFlags = 8;
+	    SendInput(1, &_input, sizeof(INPUT));
+	    _input.mi.dwFlags = 10;
+	    SendInput(1, &_input, sizeof(INPUT));
+    }
 }
 
 void SUIPressKey(int keycode) {
-    if(ip.type == INPUT_MOUSE) {
+    if(_input.type == 0) {
         return;
     }
-    ip.ki.wVk = keycode;
-    ip.ki.dwFlags = 0;
-    SendInput(1, &ip, sizeof(INPUT));
+    _input.ki.wVk = keycode;
+    _input.ki.dwFlags = 0;
+    SendInput(1, &_input, sizeof(INPUT));
     
-    ip.ki.dwFlags = KEYEVENTF_KEYUP;
-    SendInput(1, &ip, sizeof(INPUT));
+    _input.ki.dwFlags = KEYEVENTF_KEYUP;
+    SendInput(1, &_input, sizeof(INPUT));
 }
