@@ -1,7 +1,11 @@
 // Single-Header Library for Simulating user input
-// Putting it on GitHub so i can always download it if I get a new computer
+// Putting it on GitHub so i can always download 
+// it if I get a new computer
 
 #pragma once
+
+#define MOUSE_LEFT_CLICK 1
+#define MOUSE_RIGHT_CLICK 2
 
 #ifndef _WINDOWS_
     #include <Windows.h>
@@ -28,10 +32,7 @@ void SUIInit(int mode) {
 }
 
 void SUIMoveCursor(int x, int y) {
-    _input.mi.dx = x;
-	_input.mi.dy = y;
-    _input.mi.dwFlags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
-		SendInput(1, &_input, sizeof(INPUT));
+    SetCursorPos(x, y);
 }
 
 void SUIClickMouse(int button) {
@@ -40,12 +41,15 @@ void SUIClickMouse(int button) {
 	    SendInput(1, &_input, sizeof(INPUT));
 	    _input.mi.dwFlags = 4;
 	    SendInput(1, &_input, sizeof(INPUT));
-    } else
+    } 
+    else
     if(button == 2) {
         _input.mi.dwFlags = 8;
 	    SendInput(1, &_input, sizeof(INPUT));
 	    _input.mi.dwFlags = 10;
 	    SendInput(1, &_input, sizeof(INPUT));
+    } else {
+        return;
     }
 }
 
