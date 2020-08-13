@@ -55,6 +55,7 @@ void SUIMoveCursor(int x, int y)
 Moves the cursor
 
 x is the x position you want the mouse to be in
+
 y is the y position you want the mouse to be in
 
 NOTE: This is functionally identical to SetCursorPos
