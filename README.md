@@ -18,6 +18,10 @@ int main() {
 
 ---
 
+## [Contributing](CONTRIBUTING.md)
+
+---
+
 ## Function Guide
 
 ---
