@@ -4,15 +4,19 @@
 
 #pragma once
 
+// Defines so you dont have to remember left and right click are 1 and 2
 #define MOUSE_LEFT_CLICK 1
 #define MOUSE_RIGHT_CLICK 2
 
+// Include Windows.h, wont work on unix systems ¯\_(ツ)_/¯
 #ifndef _WINDOWS_
     #include <Windows.h>
 #endif
 
+// Input variable
 INPUT _input;
 
+// Function for initializing SUI
 void SUIInit(int mode) {
     if(mode>1) {
         return;
@@ -31,10 +35,12 @@ void SUIInit(int mode) {
     }
 }
 
+// Moving cursor pos. its just SetCursorPos, but it would have been weird if we didnt have something for this ¯\_(ツ)_/¯
 void SUIMoveCursor(int x, int y) {
     SetCursorPos(x, y);
 }
 
+// Click mouse button
 void SUIClickMouse(int button) {
     if(button == 1) {
            _input.mi.dwFlags = 2;
@@ -53,6 +59,7 @@ void SUIClickMouse(int button) {
     }
 }
 
+// Keyboard input
 void SUIPressKey(int keycode) {
     if(_input.type == 0) {
         return;
