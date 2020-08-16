@@ -1,4 +1,4 @@
-#include "SUI.hpp" // Include library
+#include "SUI.h" // Include library
 
 int main() {
     SUI sui; // Create an instance of SUI
