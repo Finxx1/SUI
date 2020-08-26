@@ -1,4 +1,4 @@
-#include "SUI.h" // Include library
+#include "..\SUI.h" // Include library
 
 int main() {
     SUIInit(INPUT_KEYBOARD); // Initialize the library for keyboard input

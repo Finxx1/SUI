@@ -1,4 +1,4 @@
-#include "SUI.h" // Include library
+#include "..\SUI.h" // Include library
 
 int main() {
     SUIInit(INPUT_MOUSE); // Initialize the library for mouse input
