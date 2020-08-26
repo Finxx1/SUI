@@ -36,7 +36,9 @@ Follow the [Code Style](#Code-Style)
 
 ## Code Style
 
-Code must work with C in SUI.h. If it only works with C++, make the change in SUI.hpp
+Code must work with C in SUI.h. If it only works with C++, make the change in the class part of SUI.h
+
+When adding new functions to the C part of the header, always begin the name with "SUI". example: SUIPressKey().
 
 Comments are written either above or to the right of the code they are referencing
 
