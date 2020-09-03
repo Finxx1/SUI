@@ -1,6 +1,6 @@
 # SUI
 
-**SUI** is a Single-Header Library that simulates user input
+**SUI** is a Single-Header Library for Windows that simulates user input
 
 ---
 
@@ -23,8 +23,6 @@ int main() {
 ---
 
 ## Function Guide
-
----
 
 ```c
 void SUIInit(int mode)
