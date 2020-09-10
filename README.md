@@ -19,6 +19,8 @@ int main() {
 ## C++ Example
 
 ```c++
+#include "SUI.h" // Include library
+
 int main() {
     SUI sui; // Create SUI object
     sui.Init(INPUT_KEYBOARD); // Initialize the library for keyboard input
